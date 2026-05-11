@@ -1,27 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./src/config/db'); 
 require('dotenv').config();
+
+const db = require('./src/config/db'); 
+const examenRoutes = require('./src/routes/examenRoutes'); 
+const activoRoutes = require('./src/routes/activoRoutes');
 
 const app = express();
 
-
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 
 
-db.getConnection()
-    .then(connection => {
-        console.log('✅ Conectado exitosamente a la base de datos MySQL');
-        connection.release();
-    })
-    .catch(err => {
-        console.error('❌ Error conectando a la base de datos:', err.message);
+db.query('SELECT 1')
+    .then(() => console.log('✅ Conectado exitosamente a la base de datos MySQL'))
+    .catch(err => console.error('❌ Error conectando a la base de datos:', err.message));
+
+
+app.use('/api/examenes', examenRoutes);
+app.use('/api/activos', activoRoutes);
+
+
+app.use((req, res) => {
+    res.status(404).json({ 
+        error: "Ruta no encontrada en el servidor", 
+        url_solicitada: req.originalUrl, 
+        metodo_usado: req.method 
     });
-
-
-app.get('/', (req, res) => {
-    res.send('API funcionando correctamente');
 });
 
 const PORT = process.env.PORT || 3000;
