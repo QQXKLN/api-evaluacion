@@ -1,0 +1,402 @@
+{
+  "info": {
+    "_postman_id": "d656b64b-cc2d-45b0-a894-2e15f21e026b",
+    "name": "api_evaluacion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54704051",
+    "_collection_link": "https://go.postman.co/collection/54704051-d656b64b-cc2d-45b0-a894-2e15f21e026b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Examenes medicos",
+      "item": [
+        {
+          "name": "POST Crear examen",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es 200 o 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"paciente\": \"Diego Oyarzo\",\r\n    \"tipo_examen\": \"Perfil Bioquímico\",\r\n    \"fecha_examen\": \"2026-05-15\",\r\n    \"resultado_texto\": \"Valores en rango normal\",\r\n    \"laboratorio\": \"Laboratorio Central\",\r\n    \"costo\": 15000.00,\r\n    \"entregado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/examenes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Listar Examenes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es 200 o 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/examenes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Examen por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es 200 o 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/examenes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Actualizar Examen",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"paciente\": \"Diego Barria\",\r\n    \"tipo_examen\": \"Perfil Bioquímico\",\r\n    \"fecha_examen\": \"2026-05-15\",\r\n    \"resultado_texto\": \"Valores en rango normal\",\r\n    \"laboratorio\": \"Laboratorio Central\",\r\n    \"costo\": 35000.00,\r\n    \"entregado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/examenes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Eliminar Examen",
+          "request": {
+            "method": "DELETE",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Activos Tecnologia",
+      "item": [
+        {
+          "name": "POST Crear Activo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es correcto\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"codigo_activo\": \"LPT-022\",\r\n    \"nombre_equipo\": \"Notebook Gamer\",\r\n    \"marca\": \"Lenovo\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": 750000.00,\r\n    \"garantia_meses\": 40,\r\n    \"en_uso\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/activos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "activos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Listar Activos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es correcto\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/activos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "activos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Activo por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es correcto\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/activos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "activos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Actualizar Activo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es correcto\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"codigo_activo\": \"LPT-001\",\r\n    \"nombre_equipo\": \"Notebook Latitude\",\r\n    \"marca\": \"Asus\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": 800000.00,\r\n    \"garantia_meses\": 24,\r\n    \"en_uso\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/activos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "activos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Eliminar Activo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es correcto\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/activos/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "activos",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
