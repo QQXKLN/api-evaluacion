@@ -4,7 +4,7 @@ const createActivo = async (req, res) => {
     try {
         const { codigo_activo, nombre_equipo, valor_compra } = req.body;
         
-        // Validación de campos obligatorios
+        
         if (!codigo_activo || !nombre_equipo || valor_compra === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios: codigo_activo, nombre_equipo o valor_compra.' });
         }

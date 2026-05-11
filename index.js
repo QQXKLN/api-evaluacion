@@ -13,8 +13,8 @@ app.use(express.json());
 
 
 db.query('SELECT 1')
-    .then(() => console.log('✅ Conectado exitosamente a la base de datos MySQL'))
-    .catch(err => console.error('❌ Error conectando a la base de datos:', err.message));
+    .then(() => console.log(' Conectado exitosamente a la base de datos MySQL'))
+    .catch(err => console.error(' Error conectando a la base de datos:', err.message));
 
 
 app.use('/api/examenes', examenRoutes);
@@ -32,5 +32,5 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(` Servidor corriendo en http://localhost:${PORT}`);
 });

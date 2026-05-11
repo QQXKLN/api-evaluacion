@@ -1,11 +1,11 @@
 const ExamenModel = require('../models/examenModel');
 
-//POST 
+
 const createExamen = async (req, res) => {
     try {
         const { paciente, tipo_examen, fecha_examen, costo } = req.body;
         
-        // Validación de campos obligatorios (Criterio C)
+        
         if (!paciente || !tipo_examen || !fecha_examen || costo === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios: paciente, tipo_examen, fecha_examen o costo.' });
         }
@@ -17,7 +17,7 @@ const createExamen = async (req, res) => {
     }
 };
 
-//GET 
+ 
 const getExamenes = async (req, res) => {
     try {
         const examenes = await ExamenModel.getAll();
@@ -40,7 +40,7 @@ const getExamenById = async (req, res) => {
     }
 };
 
-//PUT
+
 const updateExamen = async (req, res) => {
     try {
         const { paciente, tipo_examen, fecha_examen, costo } = req.body;
@@ -60,7 +60,7 @@ const updateExamen = async (req, res) => {
     }
 };
 
-//DELETE 
+
 const deleteExamen = async (req, res) => {
     try {
         const affectedRows = await ExamenModel.delete(req.params.id);
