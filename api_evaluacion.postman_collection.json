@@ -36,7 +36,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"paciente\": \"Diego Oyarzo\",\r\n    \"tipo_examen\": \"Perfil Bioquímico\",\r\n    \"fecha_examen\": \"2026-05-15\",\r\n    \"resultado_texto\": \"Valores en rango normal\",\r\n    \"laboratorio\": \"Laboratorio Central\",\r\n    \"costo\": 15000.00,\r\n    \"entregado\": false\r\n}",
+              "raw": "{\r\n    \"paciente\": \"Diego Barria\",\r\n    \"tipo_examen\": \"tipo examen 2\",\r\n    \"fecha_examen\": \"2026-06-20\",\r\n    \"resultado_texto\": \"No se que poner aqui\",\r\n    \"laboratorio\": \"Laboratorio Biologia\",\r\n    \"costo\": 400,\r\n    \"entregado\": true\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -139,12 +139,31 @@
         },
         {
           "name": "PUT Actualizar Examen",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es 200 o 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"paciente\": \"Diego Barria\",\r\n    \"tipo_examen\": \"Perfil Bioquímico\",\r\n    \"fecha_examen\": \"2026-05-15\",\r\n    \"resultado_texto\": \"Valores en rango normal\",\r\n    \"laboratorio\": \"Laboratorio Central\",\r\n    \"costo\": 35000.00,\r\n    \"entregado\": true\r\n}",
+              "raw": "{\r\n\r\n    \"paciente\": \"Diego Oyarzo\",\r\n    \"tipo_examen\": \"tipo examen 2\",\r\n    \"fecha_examen\": \"2026-06-20\",\r\n    \"resultado_texto\": \"No se que poner aqui\",\r\n    \"laboratorio\": \"Laboratorio Biologia\",\r\n    \"costo\": \"400.00\",\r\n    \"entregado\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -152,7 +171,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3000/api/examenes/1",
+              "raw": "http://localhost:3000/api/examenes/3",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -161,7 +180,7 @@
               "path": [
                 "api",
                 "examenes",
-                "1"
+                "3"
               ]
             }
           },
@@ -169,9 +188,41 @@
         },
         {
           "name": "DELETE Eliminar Examen",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El código de estado es 200 o 201\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"La respuesta es un JSON\", function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "DELETE",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/examenes/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes",
+                "3"
+              ]
+            }
           },
           "response": []
         }
@@ -206,7 +257,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"codigo_activo\": \"LPT-022\",\r\n    \"nombre_equipo\": \"Notebook Gamer\",\r\n    \"marca\": \"Lenovo\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": 750000.00,\r\n    \"garantia_meses\": 40,\r\n    \"en_uso\": true\r\n}",
+              "raw": "{\r\n    \"codigo_activo\": \"pecegeimerr\",\r\n    \"nombre_equipo\": \"Notebook Gamer\",\r\n    \"marca\": \"Lenovo\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": 550000.00,\r\n\r\n    \"en_uso\": true\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -333,7 +384,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"codigo_activo\": \"LPT-001\",\r\n    \"nombre_equipo\": \"Notebook Latitude\",\r\n    \"marca\": \"Asus\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": 800000.00,\r\n    \"garantia_meses\": 24,\r\n    \"en_uso\": false\r\n}",
+              "raw": "{\r\n\r\n    \"codigo_activo\": \"Laptop geimer\",\r\n    \"nombre_equipo\": \"Laptop Gamer\",\r\n    \"marca\": \"Lenovo\",\r\n    \"fecha_compra\": \"2026-03-10\",\r\n    \"valor_compra\": \"750000.00\",\r\n    \"en_uso\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -381,7 +432,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:3000/api/activos/2",
+              "raw": "http://localhost:3000/api/activos/4",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -390,7 +441,7 @@
               "path": [
                 "api",
                 "activos",
-                "2"
+                "4"
               ]
             }
           },

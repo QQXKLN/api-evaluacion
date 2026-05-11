@@ -3,14 +3,23 @@ const ExamenModel = require('../models/examenModel');
 
 const createExamen = async (req, res) => {
     try {
-        const { paciente, tipo_examen, fecha_examen, costo } = req.body;
+        
+        const { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado } = req.body;
         
         
         if (!paciente || !tipo_examen || !fecha_examen || costo === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios: paciente, tipo_examen, fecha_examen o costo.' });
         }
         
-        const insertId = await ExamenModel.create(req.body);
+        
+        if (costo < 0) {
+            return res.status(400).json({ error: 'El costo no puede ser un valor negativo.' });
+        }
+
+        
+        const datosExamen = { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado };
+        
+        const insertId = await ExamenModel.create(datosExamen);
         res.status(201).json({ message: 'Examen creado exitosamente', id: insertId });
     } catch (error) {
         res.status(500).json({ error: 'Error interno al crear el examen.', detalle: error.message });
@@ -43,13 +52,20 @@ const getExamenById = async (req, res) => {
 
 const updateExamen = async (req, res) => {
     try {
-        const { paciente, tipo_examen, fecha_examen, costo } = req.body;
+        const { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado } = req.body;
         
         if (!paciente || !tipo_examen || !fecha_examen || costo === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios para actualizar.' });
         }
 
-        const affectedRows = await ExamenModel.update(req.params.id, req.body);
+        if (costo < 0) {
+            return res.status(400).json({ error: 'El costo no puede ser un valor negativo.' });
+        }
+
+        
+        const datosActualizados = { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado };
+
+        const affectedRows = await ExamenModel.update(req.params.id, datosActualizados);
         
         if (affectedRows === 0) {
             return res.status(404).json({ message: 'Examen no encontrado o los datos son idénticos.' });

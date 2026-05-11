@@ -2,14 +2,22 @@ const ActivoModel = require('../models/activoModel');
 
 const createActivo = async (req, res) => {
     try {
-        const { codigo_activo, nombre_equipo, valor_compra } = req.body;
+        
+        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso } = req.body;
         
         
         if (!codigo_activo || !nombre_equipo || valor_compra === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios: codigo_activo, nombre_equipo o valor_compra.' });
         }
+        if (req.body.garantia_meses !== undefined) {
+            return res.status(400).json({  error: "El campo 'garantia_meses' ya no es válido en esta API."
+                                        
+         });
+}
         
-        const insertId = await ActivoModel.create(req.body);
+        const nuevoActivo = { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso };
+        
+        const insertId = await ActivoModel.create(nuevoActivo);
         res.status(201).json({ message: 'Activo creado exitosamente', id: insertId });
     } catch (error) {
         res.status(500).json({ error: 'Error interno al crear el activo.', detalle: error.message });
@@ -39,13 +47,17 @@ const getActivoById = async (req, res) => {
 
 const updateActivo = async (req, res) => {
     try {
-        const { codigo_activo, nombre_equipo, valor_compra } = req.body;
+        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso } = req.body;
         
         if (!codigo_activo || !nombre_equipo || valor_compra === undefined) {
             return res.status(400).json({ error: 'Faltan campos obligatorios para actualizar.' });
         }
+        
 
-        const affectedRows = await ActivoModel.update(req.params.id, req.body);
+        
+        const activoEditado = { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso };
+
+        const affectedRows = await ActivoModel.update(req.params.id, activoEditado);
         
         if (affectedRows === 0) {
             return res.status(404).json({ message: 'Activo no encontrado o los datos son idénticos.' });

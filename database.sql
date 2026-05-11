@@ -21,6 +21,7 @@ CREATE TABLE activos_tecnologia (
     marca VARCHAR(80),
     fecha_compra DATE,
     valor_compra DECIMAL(12,2) NOT NULL,
-    garantia_meses INT DEFAULT 0,
+
     en_uso BOOLEAN DEFAULT TRUE
 );
+

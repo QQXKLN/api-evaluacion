@@ -12,19 +12,21 @@ const ActivoModel = {
     },
     
     create: async (data) => {
-        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, garantia_meses, en_uso } = data;
+        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso } = data;
+      
         const [result] = await db.query(
-            'INSERT INTO activos_tecnologia (codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, garantia_meses, en_uso) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            [codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, garantia_meses, en_uso]
+            'INSERT INTO activos_tecnologia (codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso) VALUES (?, ?, ?, ?, ?, ?)',
+            [codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso]
         );
         return result.insertId;
     },
     
     update: async (id, data) => {
-        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, garantia_meses, en_uso } = data;
+        const { codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso } = data;
+
         const [result] = await db.query(
-            'UPDATE activos_tecnologia SET codigo_activo=?, nombre_equipo=?, marca=?, fecha_compra=?, valor_compra=?, garantia_meses=?, en_uso=? WHERE id=?',
-            [codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, garantia_meses, en_uso, id]
+            'UPDATE activos_tecnologia SET codigo_activo=?, nombre_equipo=?, marca=?, fecha_compra=?, valor_compra=?, en_uso=? WHERE id=?',
+            [codigo_activo, nombre_equipo, marca, fecha_compra, valor_compra, en_uso, id]
         );
         return result.affectedRows;
     },

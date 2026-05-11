@@ -11,17 +11,28 @@ const ExamenModel = {
     },
     create: async (data) => {
         const { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado } = data;
+      
         const [result] = await db.query(
             'INSERT INTO examenes_medicos (paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            [paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado]
+            [paciente, tipo_examen, fecha_examen, resultado_texto || null, laboratorio || null, costo, entregado ? 1 : 0]
         );
         return result.insertId;
     },
     update: async (id, data) => {
         const { paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado } = data;
+        
         const [result] = await db.query(
             'UPDATE examenes_medicos SET paciente=?, tipo_examen=?, fecha_examen=?, resultado_texto=?, laboratorio=?, costo=?, entregado=? WHERE id=?',
-            [paciente, tipo_examen, fecha_examen, resultado_texto, laboratorio, costo, entregado, id]
+            [
+                paciente, 
+                tipo_examen, 
+                fecha_examen, 
+                resultado_texto || null, 
+                laboratorio || null, 
+                costo, 
+                entregado ? 1 : 0,
+                id
+            ]
         );
         return result.affectedRows;
     },
